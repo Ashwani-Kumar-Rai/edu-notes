@@ -1,0 +1,173 @@
+https://education.github.com/git-cheat-sheet-education.pdf
+==============================================================================================================================
+
+GIT : A tool for version control that tracks changes to your code locally.
+
+TYPE : Version control system
+PURPOSE : Git is a distributed version control system that helps you track changes to your codebase. It allows multiple people to work on the same project simultaneously without interfering with 		  each other’s work. Git manages versions of files, supports branching and merging, and tracks changes over time.
+USAGE: You use Git to manage and record changes to your files locally on your computer. Commands like git commit, git branch, and git merge are part of Git.
+
+Version control system a.k.a Source Control : track , manage software changes over time , revert back to a particular change . 
+Eg : Git (Most famous) , Piper (User by Google)
+
+
+==============================================================================================================================
+GITHUB : A platform that hosts Git repositories online and provides collaboration tools.
+
+TYPE : Hosting service for Git repositories
+PURPOSE: GitHub is a platform that hosts Git repositories online, allowing for collaboration and sharing. It provides a web-based interface to interact with Git repositories, including features 			like pull requests, issue tracking, and project management tools.
+USAGE: You use GitHub to store and share your Git repositories with others. It also offers additional features like GitHub Actions for CI/CD, GitHub Pages for hosting websites, and more.
+
+Eg : GitLab , Bitbucket
+==============================================================================================================================
+ENABLE GIT IN A FOLDER/REPO/PROJECT :
+
+git : git is installed 
+git -v  : check version 
+
+GIT WANTS TO TRACK WHO IS MAKING A PARTICULAR CHANGE .SO IT NEEDS TO HAVE BELOW 2 INFO ABOUT USER :
+git config --global user.name “[firstname lastname]” 
+git config --global user.email “[valid-email]”
+
+
+git init : GIT IS INITIALIZED IN THAT FOLDER , NOW GIT CAN TRACK CHANGES IN THE GIT . 
+repository : folder / project
+
+NOTICE : U SYMBOL IN GIT : means UNTRACKED : means github is not tracking it .
+
+GIT GRAPH (VS CODE EXTENSION by mhutchie) : View a Git Graph of your repository, and perform Git actions from the graph. 
+
+.git folder : every thing that git tracks and its configuration files are kept in .git folder . if any project is having .git folder means git is tracking it . 
+
+git add main.go : U->A : means now git is tracking this file for changes. you can see border near line no in vscode for changes . 
+git add . : now git is tracking all the files 
+
+git diff : diff of what is changed but not staged 
+==============================================================================================================================
+TRACK HISTORY OF CHANGES : 
+
+
+COMMIT : saved changes , when we think that our changes are completed , we commit .
+		every commit is having a user frendly message , that tells the purpose of that commit . 
+git commit -m "initial code added" 
+
+git status : locally which of my files are modified  . 
+
+git log : we can see history of commits . 
+git log --oneline : track changes in one line . 
+
+git diff : - IN RED : means this code is removed
+		   + IN GREEN : means this code is added . 
+
+
+git show commitID : will tell what is changed in this commmit . 
+
+
+git blame filename : tells who changed which line at what time in that file . who to be blamed for a particular line . 
+
+
+COMMITS SHOULD BE CLEAN : 
+	[BAD] putting whole code in one commit , its bad for tracking . whole code should not be pushed in one commit . 
+	[GOOD] do commits functionality wise , complete one functionality and commit it .  maintain a clean commit history . 
+	
+	
+STAGING AREA : Locally there is a staging area , whenever we modify a file we need to put it into the staging area , using git add . 
+			   when we commit , only the changes that are in staging area , gets commited . 
+			   
+
+==============================================================================================================================
+REVERTING COMMITS IN GIT : if something breaks , then we can revert back to the previous commit until which code was fine . 
+		But to revert back , commits should be there , and should be good . 
+		
+		
+HEAD : like linkedList , head points to the latest commit , when a new commit is made , head starts pointing to the latest commit . 
+
+ONE METHOD TO REVERT <changing head>: make the head point to a previous commit . git reset --hard 576f7cf
+		confirm the new head using git log 
+
+
+SECOND METHOD OF REVERT : <make the required changes of that commit to our current commit >
+git revert commit ID : all the things gets added or removed from the current commit , to make it like that commit we are refering . 
+	git status : our file gets modified .
+	git add .
+	git commit -m "reverting back to those changes"
+	git log --oneline 
+	it created a new commit and made the changes of the old commit to the new commit . 
+	
+==============================================================================================================================
+COLLABORATION : GIT-HUB/GIT-LAB/BIT-BUCKET : is a publically available git server . 
+GIT-HUB = git server +  friendly UI Layer + task management + a lot of features like social media , where i can see other peoples contributions .
+
+SINGLE SOURCE OF TRUTH : REMOTE SERVER (linux server , azure server etc): i have a server up and running and i install git on it : 
+	we will push our commits into this server . and all of our fellow developers will pull this changes .  
+	This centeral server will make sure , that everyone is having same copy .
+
+
+
+git init : creates a local repository
+github.com -> create repository : creates a public repository(visible to everyone)/private repository(visible to only me and whom i've shared ) 
+
+
+GIT REMOTE : git remote add origin github-repo-link : on this remote repo we are pushing our local repo . 
+Every remote we can give a user friendly name : by default we call it origin 
+
+git remote -v : gives the link of our remote repo , for push and pull 
+
+git push -u origin main
+
+git push -u{-u means upstream} origin{git remote link} main{name of the branch}
+
+
+CAN WE HAVE MULTIPLE REMOTE ? YES 
+
+==============================================================================================================================
+WE NEED AN SSH KEY AUTHENTICATION : SO THAT ONLY INTENDED PEOPLE CAN PUSH CODE TO A REPO . 
+
+PROCESS :
+1> We generate a ssh key in our local machine , 1 private , 1 public key gets generated . 
+2> we copy the public key on our github account . 
+3> whenever we push our code using private key from local , it will get matched with the public key of the github account , and will get authenticated . 
+
+GO TO : github.com -> settings -> ssh and gpg keys .  
+
+==============================================================================================================================
+BRANCHING IN GIT : 
+
+while creating a new feature/solving a bug/doing experiment we create a new branch 
+
+git branch <BRANCH NAME>
+git checkout <BRANCH NAME>
+git checkout -b <BRANCH NAME>  // above two line in one line 
+
+git pull 
+
+https://stackoverflow.com/questions/273695/what-are-some-examples-of-commonly-used-practices-for-naming-git-branches
+Short well-defined tokens
+Choose short tokens so they do not add too much noise to every one of your branch names. I use these:
+wip       Works in progress; stuff I know won't be finished soon
+feat      Feature I'm adding or expanding
+bug       Bug fix or experiment
+junk      Throwaway branch created to experiment
+
+==============================================================================================================================
+Commits : means history of changes . 
+==============================================================================================================================
+BRANCH MERGE VS REBASE : 
+
+NOTE : unless its a special case we should only do MERGE . 
+
+MERGE : means entire branch gets merged as a single commit . 
+
+REBASE : within branch history is also maintained . 
+If we use too much rebase , then commit history will get a lot lengthy . 
+NOTE : we do a lot less rebase only when it is needed . 
+
+==============================================================================================================================
+STASHING : 
+git stash : temporary commit 
+
+lets say i am doing some changes on my local , and those changes are not complete but , i want to pull some change from github repo , 
+we can stash it : meaning moving it to a temporary repo . the pull it .  
+
+==============================================================================================================================
+END
