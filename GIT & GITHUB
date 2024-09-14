@@ -4,7 +4,8 @@ https://education.github.com/git-cheat-sheet-education.pdf
 GIT : A tool for version control that tracks changes to your code locally.
 
 TYPE : Version control system
-PURPOSE : Git is a distributed version control system that helps you track changes to your codebase. It allows multiple people to work on the same project simultaneously without interfering with 		  each other’s work. Git manages versions of files, supports branching and merging, and tracks changes over time.
+PURPOSE : Git is a distributed version control system that helps you track changes to your codebase. It allows multiple people to work on the same project simultaneously without interfering with 
+	each other’s work. Git manages versions of files, supports branching and merging, and tracks changes over time.
 USAGE: You use Git to manage and record changes to your files locally on your computer. Commands like git commit, git branch, and git merge are part of Git.
 
 Version control system a.k.a Source Control : track , manage software changes over time , revert back to a particular change . 
@@ -15,7 +16,8 @@ Eg : Git (Most famous) , Piper (User by Google)
 GITHUB : A platform that hosts Git repositories online and provides collaboration tools.
 
 TYPE : Hosting service for Git repositories
-PURPOSE: GitHub is a platform that hosts Git repositories online, allowing for collaboration and sharing. It provides a web-based interface to interact with Git repositories, including features 			like pull requests, issue tracking, and project management tools.
+PURPOSE: GitHub is a platform that hosts Git repositories online, allowing for collaboration and sharing. It provides a web-based interface to interact with Git repositories, including features 
+	like pull requests, issue tracking, and project management tools.
 USAGE: You use GitHub to store and share your Git repositories with others. It also offers additional features like GitHub Actions for CI/CD, GitHub Pages for hosting websites, and more.
 
 Eg : GitLab , Bitbucket
